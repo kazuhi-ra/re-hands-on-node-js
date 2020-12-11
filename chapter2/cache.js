@@ -12,7 +12,7 @@ const cache = {}
 const parseJSONAsyncWithCache = (json, callback) => {
   const cached = cache[json]
   if (cached) {
-    setTimeout(() => callback(cached.err, cached.result), 0)
+    process.nextTick(() => callback(cached.err, cached.result))
     return
   }
   parseJSONAsync(json, (err, result) => {
