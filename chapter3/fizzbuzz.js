@@ -1,6 +1,6 @@
 const events = require('events')
 
-// 処理の順番
+// 処理の順番(同期ver)
 // createFizzBuzzEventEmitter(10) 発動
 // eventEmitter誕生 -> _emitFizzBuzz発動(同期)
 // startがemit -> countが誕生 -> 10msのsleep
@@ -8,9 +8,17 @@ const events = require('events')
 // 10ms経って、sleepより後ろの同期処理が実行される
 // endがemit
 
+// 処理の順番(非同期ver)
+// createFizzBuzzEventEmitter(10) 発動
+// eventEmitter誕生 -> _emitFizzBuzz発動(非同期)
+// startからendまでイベントが登録される
+// startがemit -> countが誕生 -> 10msのsleep
+// 10ms経って、sleepより後ろの同期処理が実行される
+// endがemit
+
 const createFizzBuzzEventEmitter = until => {
   const eventEmitter = new events.EventEmitter()
-  _emitFizzBuzz(eventEmitter, until)
+  process.nextTick(() => _emitFizzBuzz(eventEmitter, until))
   return eventEmitter
 }
 
