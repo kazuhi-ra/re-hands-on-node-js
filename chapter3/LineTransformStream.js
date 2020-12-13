@@ -36,5 +36,7 @@ lineTransformStreamnew
     }
   })
   .write('foo\nbar')
-  // .write('baz')
-  // .end()
+// .write('baz')
+// .end()
+
+module.exports = LineTransformStream

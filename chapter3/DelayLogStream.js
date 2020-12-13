@@ -18,3 +18,5 @@ class DelayLogStream extends stream.Writable {
 new DelayLogStream().write({ message: 'Yo', delay: 1000 }, () =>
   console.log('DONE')
 )
+
+module.exports = DelayLogStream

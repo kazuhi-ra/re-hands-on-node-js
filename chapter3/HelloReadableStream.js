@@ -34,3 +34,5 @@ helloReadableStream
     }
   })
   .on('end', () => console.log('end'))
+
+module.exports = HelloReadableStream
